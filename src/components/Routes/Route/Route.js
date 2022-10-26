@@ -13,6 +13,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    
     errorElement: <NotFound></NotFound>,
     children: [
       {
@@ -45,9 +46,10 @@ export const router = createBrowserRouter([
         element: <Course></Course>,
       },
       {
-        path: "checkout",
+        path: "checkout/:id",
+        loader: ({params})=> fetch(`http://localhost:5000/checkout/${params.id}`),
         element: <Checkout></Checkout>,
-      },
+      }
     ],
   },
 ]);
