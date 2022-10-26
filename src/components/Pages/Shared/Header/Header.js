@@ -13,7 +13,7 @@ export const Header = () => {
 
   const handleLogout=()=>{
     logOut()
-    toast.error("logout")
+    toast.error("You have been logged out")
   }
 
   return (
