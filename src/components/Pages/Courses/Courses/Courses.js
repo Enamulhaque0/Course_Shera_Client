@@ -5,8 +5,7 @@ import CourseDetails from '../CourseDetails/CourseDetails';
 
 const Courses = () => {
     const courses = useLoaderData()
-    const {id} = courses
-    console.log(courses);
+   
     return (
         <div className='flex sm:flex-col-1'>
          
