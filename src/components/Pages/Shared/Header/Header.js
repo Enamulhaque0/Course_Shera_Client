@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../../../assest/logo.png"
+import logo from "../../../../assest/logo.png";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,9 +14,8 @@ export const Header = () => {
           title="Company"
           className="inline-flex items-center"
         >
-
           <img className="w-25" src={logo} alt="" srcSet="" />
-         
+
           <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
             Course Shera
           </span>
@@ -27,7 +26,11 @@ export const Header = () => {
               to="/courses"
               aria-label="Our product"
               title="Our product"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              className={({ isActive }) =>
+                isActive
+                  ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              }
             >
               Courses
             </NavLink>
@@ -37,7 +40,11 @@ export const Header = () => {
               to="/blog"
               aria-label="Our product"
               title="Our product"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              className={({ isActive }) =>
+                isActive
+                  ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              }
             >
               Blog
             </NavLink>
@@ -58,7 +65,11 @@ export const Header = () => {
               to="/login"
               aria-label="About us"
               title="About us"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              className={({ isActive }) =>
+                isActive
+                  ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              }
             >
               Login
             </NavLink>
@@ -91,8 +102,8 @@ export const Header = () => {
               <div className="p-5 bg-white border rounded shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <Link
-                      to="/"
+                    <a
+                      href="/"
                       aria-label="Company"
                       title="Company"
                       className="inline-flex items-center"
@@ -101,7 +112,7 @@ export const Header = () => {
                       <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
                         Course Shera
                       </span>
-                    </Link>
+                    </a>
                   </div>
                   <div>
                     <button
@@ -122,47 +133,61 @@ export const Header = () => {
                 <nav>
                   <ul className="space-y-4">
                     <li>
-                      <Link
+                      <NavLink
                         to="/courses"
                         aria-label="Our product"
                         title="Our product"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                            : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        }
                       >
                         Courses
-                      </Link>
+                      </NavLink>
                     </li>
                     <li>
-                      <Link
+                      <NavLink
                         to="/blog"
                         aria-label="Our product"
                         title="Our product"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                            : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        }
                       >
                         Blog
-                      </Link>
+                      </NavLink>
                     </li>
-                    <li>
                     <label
-            htmlFor="Toggle2"
-            className="inline-flex items-center space-x-4 cursor-pointer dark:text-gray-100"
-          >
-            <span className="relative">
-              <input id="Toggle2" type="checkbox" className="hidden peer" />
-              <div className="w-10 h-6 rounded-full shadow-inner dark:bg-gray-400 peer-checked:dark:bg-violet-400"></div>
-              <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto  dark:bg-gray-800"></div>
-            </span>
-            <span className="text-black">Dark</span>
-          </label>
-                    </li>
+                      htmlFor="Toggle"
+                      className="inline-flex items-center space-x-4 cursor-pointer dark:text-gray-100"
+                    >
+                      <span className="relative">
+                        <input
+                          id="Toggle"
+                          type="checkbox"
+                          className="hidden peer"
+                        />
+                        <div className="w-10 h-6 rounded-full shadow-inner dark:bg-gray-400 peer-checked:dark:bg-violet-400"></div>
+                        <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto  dark:bg-gray-800"></div>
+                      </span>
+                      <span className="text-black">Dark</span>
+                    </label>
                     <li>
-                      <Link
+                      <NavLink
                         to="/login"
                         aria-label="About us"
                         title="About us"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                            : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        }
                       >
                         Login
-                      </Link>
+                      </NavLink>
                     </li>
                   </ul>
                 </nav>

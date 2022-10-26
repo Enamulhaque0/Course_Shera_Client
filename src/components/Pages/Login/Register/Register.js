@@ -1,40 +1,82 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { AuthContext } from "../../../../contexts/AuthProvider";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
+import { useState } from "react";
 
 const Register = () => {
   const googleProvider = new GoogleAuthProvider();
-  const gitHubProvider= new GithubAuthProvider()
-  const { LoginWithGoogle ,LoginWitGithub} = useContext(AuthContext);
+  const gitHubProvider = new GithubAuthProvider();
+  const { LoginWithGoogle, LoginWitGithub, createUser, updateUserProfile } =
+    useContext(AuthContext);
+  const [toggle, setToggle] = useState(false);
+
+  const toggleHandle = () => {
+    setToggle(!toggle);
+  };
 
   const handleGoogle = () => {
     LoginWithGoogle(googleProvider)
-    .then((result) => {
-      const user = result.user;
-      toast.success('successfully Login')
-    })
-    .catch((error) => toast.error(error.message));
+      .then((result) => {
+        const user = result.user;
+        toast.success("successfully Login");
+      })
+      .catch((error) => toast.error(error.message));
   };
 
-
   // github login
-  const handleGithub = ()=>{
-
+  const handleGithub = () => {
     LoginWitGithub(gitHubProvider)
-    .then((result) => {
-      const user = result.user;
-      toast.success('successfully Login')
-      
-    })
-    .catch((error) => toast.error(error.message));
-  
-  
-  }
+      .then((result) => {
+        const user = result.user;
+        toast.success("successfully Login");
+      })
+      .catch((error) => toast.error(error.message));
+  };
+  // github login
 
+  //  crete user with email
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+
+        form.reset();
+        handleUpdateUserProfile(name, photoURL);
+
+        toast("Welcome to Course Era", {
+          icon: "👏",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+      })
+      .catch((e) => toast.error(e.message));
+  };
+
+  // update profile
+  const handleUpdateUserProfile = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+
+    updateUserProfile(profile)
+      .then(() => {})
+      .catch((e) => toast.error(e.message));
+  };
 
   return (
     <div>
@@ -43,34 +85,43 @@ const Register = () => {
           <div className="md:w-1/2 px-8 md:px-16">
             <h2 className="font-bold text-2xl text-[#002D74]">Register</h2>
 
-            <form action="" className="flex flex-col gap-4">
+            <form
+              onSubmit={handleSubmit}
+              action=""
+              className="flex flex-col gap-4"
+            >
               <input
                 className="p-2 mt-8 rounded-xl border"
                 type="text"
                 name="name"
                 placeholder="Your Name"
               />
+
               <input
                 className="p-2  rounded-xl border"
                 type="text"
-                name="photoURl"
+                name="photoURL"
                 placeholder="Photo URL"
               />
               <input
                 className="p-2 rounded-xl border"
-                type="email"
+                type="text"
                 name="email"
                 placeholder="Email"
                 required
               />
+
               <div className="relative">
                 <input
                   className="p-2 rounded-xl border w-full"
-                  type="password"
+                  type={toggle ? "text" : "password"}
                   name="password"
                   placeholder="Password"
+                  required
                 />
+
                 <svg
+                  onClick={toggleHandle}
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
                   height="16"
@@ -93,7 +144,10 @@ const Register = () => {
               <hr className="border-gray-400" />
             </div>
 
-            <button onClick={handleGoogle}  className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]" >
+            <button
+              onClick={handleGoogle}
+              className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]"
+            >
               <svg
                 className="mr-3"
                 xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +173,10 @@ const Register = () => {
               </svg>
               Login with Google
             </button>
-            <button onClick={handleGithub} className="bg-white border py-2 w-full rounded-xl mt-2 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]">
+            <button
+              onClick={handleGithub}
+              className="bg-white border py-2 w-full rounded-xl mt-2 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]"
+            >
               <img
                 className="mr-3"
                 src="https://img.icons8.com/ios-glyphs/30/000000/github.png"

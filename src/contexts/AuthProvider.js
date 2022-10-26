@@ -1,55 +1,46 @@
-import React, { createContext } from 'react';
-import app from "../Firebase/Firebase.Config"
-import {getAuth, signInWithPopup} from "firebase/auth";
+import React, { createContext } from "react";
+import app from "../Firebase/Firebase.Config";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
 
+const AuthProvider = ({ children }) => {
+  const user = { name: "enam" };
 
+  const LoginWithGoogle = (googleProvider) => {
+    return signInWithPopup(auth, googleProvider);
+  };
 
+  const LoginWitGithub = (gitHubProvider) => {
+    return signInWithPopup(auth, gitHubProvider);
+  };
 
+  const createUser = (email,password)=>{
 
+    return createUserWithEmailAndPassword(auth, email,password)
+  }
 
-const AuthProvider = ({children}) => {
+  const signIn = (email, password) => {
+ 
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+  const updateUserProfile = (profile) => {
+    return updateProfile(auth.currentUser, profile);
+  };
 
-const user = {name: "enam"}
-
-
-   
-
-const LoginWithGoogle =(googleProvider)=>{
-
-    return signInWithPopup(auth, googleProvider)
-}
-
-const LoginWitGithub =(gitHubProvider)=>{
-
-    return signInWithPopup(auth, gitHubProvider)
-}
-
-
-
-
-
-
-
-
-
-const authInfo = {
-    
+  const authInfo = {
     user,
+    signIn,
     LoginWitGithub,
-    
-    
-    LoginWithGoogle}
+    createUser,
+    LoginWithGoogle,
+    updateUserProfile
+  };
 
-    return (
-       <AuthContext.Provider   value={authInfo}> 
-       
-       {children}
-       
-       </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;
