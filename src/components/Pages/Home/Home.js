@@ -1,6 +1,10 @@
+import userEvent from "@testing-library/user-event";
 import React from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Home = () => {
+  const {user} = useContext(AuthContext)
   return (
     <div className="">
       <div className="relative flex flex-col py-16 lg:pt-0 lg:flex-col lg:pb-0">

@@ -1,24 +1,56 @@
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../../contexts/AuthProvider";
+import toast from 'react-hot-toast';
 
 const Register = () => {
+  const googleProvider = new GoogleAuthProvider();
+  const gitHubProvider= new GithubAuthProvider()
+  const { LoginWithGoogle ,LoginWitGithub} = useContext(AuthContext);
+
+  const handleGoogle = () => {
+    LoginWithGoogle(googleProvider)
+    .then((result) => {
+      const user = result.user;
+      toast.success('successfully Login')
+    })
+    .catch((error) => toast.error(error.message));
+  };
+
+
+  // github login
+  const handleGithub = ()=>{
+
+    LoginWitGithub(gitHubProvider)
+    .then((result) => {
+      const user = result.user;
+      toast.success('successfully Login')
+      
+    })
+    .catch((error) => toast.error(error.message));
+  
+  
+  }
+
+
+
   return (
     <div>
       <section className="bg-gray-50 min-h-screen flex items-center justify-center">
         <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
           <div className="md:w-1/2 px-8 md:px-16">
             <h2 className="font-bold text-2xl text-[#002D74]">Register</h2>
-           
 
             <form action="" className="flex flex-col gap-4">
-
-            <input
+              <input
                 className="p-2 mt-8 rounded-xl border"
                 type="text"
                 name="name"
                 placeholder="Your Name"
               />
-                <input
+              <input
                 className="p-2  rounded-xl border"
                 type="text"
                 name="photoURl"
@@ -61,7 +93,7 @@ const Register = () => {
               <hr className="border-gray-400" />
             </div>
 
-            <button className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]">
+            <button onClick={handleGoogle}  className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]" >
               <svg
                 className="mr-3"
                 xmlns="http://www.w3.org/2000/svg"
@@ -87,18 +119,23 @@ const Register = () => {
               </svg>
               Login with Google
             </button>
+            <button onClick={handleGithub} className="bg-white border py-2 w-full rounded-xl mt-2 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]">
+              <img
+                className="mr-3"
+                src="https://img.icons8.com/ios-glyphs/30/000000/github.png"
+              />
+              Login With GitHub
+            </button>
 
-
-            <div className="mt-3 text-xs flex justify-between items-center text-[#002D74]">
-        <p>Already have an account?</p>
-        <button className="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300"> <Link to="/login">Login</Link></button>
-      </div>
-           
-           
+            <div className="mt-3 text-xs flex justify-between items-center text-[#002D74] cursor-pointer">
+              <p>Already have an account?</p>
+              <Link to="/login">
+                <button className="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">
+                  Login
+                </button>
+              </Link>
+            </div>
           </div>
-
-
-          
 
           <div className="md:block hidden w-1/2">
             <img
@@ -106,7 +143,6 @@ const Register = () => {
               src="https://images.unsplash.com/photo-1616606103915-dea7be788566?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
             />
           </div>
-          
         </div>
       </section>
     </div>
