@@ -3,7 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import { FcPrint } from "react-icons/fc";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
-import toast from "react-hot-toast";
+
 
 const Course = () => {
   const course = useLoaderData();
