@@ -290,7 +290,7 @@ export const Header = () => {
                 </>
               ) : (
                 <>
-                  {" "}
+                  
                   <NavLink
                     to="/login"
                     aria-label="About us"
