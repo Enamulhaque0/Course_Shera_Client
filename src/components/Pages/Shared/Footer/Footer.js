@@ -1,112 +1,37 @@
 import React from "react";
+import logo from "../../../../assest/logo.png";
 
 const Footer = () => {
   return (
-    <div>
-      <footer className="p-6 dark:bg-gray-800 dark:text-gray-100 mt-16">
-        <div className="container grid grid-cols-2 mx-auto gap-x-3 gap-y-8 sm:grid-cols-3 md:grid-cols-4">
-          <div className="flex flex-col space-y-4">
-            <h2 className="font-medium">Getting started</h2>
-            <div className="flex flex-col space-y-2 text-sm dark:text-gray-400">
-              <a rel="noopener noreferrer" href="#">
-                Installation
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Release Notes
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Upgrade Guide
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Using with Preprocessors
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Optimizing for Production
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Browser Support
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                IntelliSense
-              </a>
-            </div>
-          </div>
-          <div className="flex flex-col space-y-4">
-            <h2 className="font-medium">Core Concepts</h2>
-            <div className="flex flex-col space-y-2 text-sm dark:text-gray-400">
-              <a rel="noopener noreferrer" href="#">
-                Utility-First
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Responsive Design
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Hover, Focus, &amp; Other States
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Dark Mode
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Adding Base Styles
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Extracting Components
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Adding New Utilities
-              </a>
-            </div>
-          </div>
-          <div className="flex flex-col space-y-4">
-            <h2 className="font-medium">Customization</h2>
-            <div className="flex flex-col space-y-2 text-sm dark:text-gray-400">
-              <a rel="noopener noreferrer" href="#">
-                Configuration
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Theme Configuration
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Breakpoints
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Customizing Colors
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Customizing Spacing
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Configuring Variants
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Plugins
-              </a>
-            </div>
-          </div>
-          <div className="flex flex-col space-y-4">
-            <h2 className="font-medium">Community</h2>
-            <div className="flex flex-col space-y-2 text-sm dark:text-gray-400">
-              <a rel="noopener noreferrer" href="#">
-                GitHub
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Discord
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Twitter
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                YouTube
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="flex items-center justify-center px-6 pt-12 text-sm">
-          <span className="dark:text-gray-400">
-            © Copyright 2022. All Rights Reserved.
-          </span>
-        </div>
-      </footer>
+    <div className="mt-16">
+     <footer className="px-4 py-8 dark:bg-gray-800 dark:text-gray-400">
+	<div className="container flex flex-wrap items-center justify-center mx-auto space-y-4 sm:justify-between sm:space-y-0">
+		<div className="flex flex-row pr-3 space-x-4 sm:space-x-8">
+			<div className="flex items-center justify-center flex-shrink-0 w-12 h-12 rounded-full ">
+				<img src={logo} alt="" srcSet="" />
+			</div>
+			<ul className="flex flex-wrap items-center space-x-4 sm:space-x-8">
+				<li>
+					<a rel="noopener noreferrer" href="#">Terms of Use</a>
+				</li>
+				<li>
+					<a rel="noopener noreferrer" href="#">Privacy</a>
+				</li>
+			</ul>
+		</div>
+		<ul className="flex flex-wrap pl-3 space-x-4 sm:space-x-8">
+			<li>
+				<a rel="noopener noreferrer" href="#">Instagram</a>
+			</li>
+			<li>
+				<a rel="noopener noreferrer" href="#">Facebook</a>
+			</li>
+			<li>
+				<a rel="noopener noreferrer" href="#">Twitter</a>
+			</li>
+		</ul>
+	</div>
+</footer>
     </div>
   );
 };

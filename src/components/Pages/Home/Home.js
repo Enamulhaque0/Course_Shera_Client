@@ -1,11 +1,8 @@
-import userEvent from "@testing-library/user-event";
 import React from "react";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Home = () => {
-  const { user } = useContext(AuthContext);
+ 
   return (
     <div className="">
       <div className="relative flex flex-col py-16 lg:pt-0 lg:flex-col lg:pb-0">
@@ -20,16 +17,16 @@ const Home = () => {
                 the best possible manner.
               </h1>
             </div>
-            {/* <div className=" btn btn-warning items-center ">
+            <div className="  items-center ">
              
               <Link
                 to="/register"
                 aria-label=""
-                className="inline-flex items-center font-semibold text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-700"
+                className="inline-flex items-center  font-semibold  text-green-600 transition-colors duration-200 hover:text-deep-purple-accent-700"
               >
                 Register 
               </Link>
-            </div> */}
+            </div>
           </div>
         </div>
         <div className="inset-y-0 right-0 w-full max-w-xl px-4 mx-auto lg:pl-8 lg:pr-0 lg:mb-0 lg:mx-0 lg:w-1/2 lg:max-w-full lg:absolute xl:px-0">
@@ -39,6 +36,7 @@ const Home = () => {
           ></iframe>
         </div>
       </div>
+     
     </div>
   );
 };

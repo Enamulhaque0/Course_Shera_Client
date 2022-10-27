@@ -9,6 +9,7 @@ import Checkout from "../../Pages/Checkout/Checkout";
 import NotFound from "../../Pages/NotFound/NotFound";
 import Home from "../../Pages/Home/Home";
 import PrivateRoute from "../PrivetRoute/PrivetRoute";
+import FAQ from "../../Pages/FAQ/FAQ";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "blog",
         element: <Blog></Blog>,
+      },
+      {
+        path: "faq",
+        element: <FAQ></FAQ>,
       },
       {
         path: "login",

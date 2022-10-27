@@ -18,13 +18,7 @@ Hosted in Firebase -> [Course Shera](https://course-shera.web.app/)
 4.React 
 5.React Router
 
-## Functionality
 
-1. user can enrol the course 
-2. user can login with email and password 
-3.also google and github login methods added
-4. if user not login then he/se can not enrol the course 
-5. there is a logout btn user can logout clicking by logout btn
 
 ## Features
 

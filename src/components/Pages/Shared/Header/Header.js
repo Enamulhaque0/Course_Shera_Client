@@ -61,6 +61,20 @@ export const Header = () => {
               Blog
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/faq"
+              aria-label="Blog"
+              title="Our product"
+              className={({ isActive }) =>
+                isActive
+                  ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              }
+            >
+              FAQ
+            </NavLink>
+          </li>
           <label
             htmlFor="Toggle1"
             className="inline-flex items-center space-x-4 cursor-pointer dark:text-gray-100"
@@ -209,6 +223,20 @@ export const Header = () => {
                         }
                       >
                         Blog
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/faq"
+                        aria-label="faq"
+                        title="Our product"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                            : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        }
+                      >
+                        FAQ
                       </NavLink>
                     </li>
                     <label
