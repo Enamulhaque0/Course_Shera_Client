@@ -8,8 +8,7 @@ Hosted in Firebase -> [Course Shera](https://course-shera.web.app/)
 
 
 ## Description 
-This Website provides facility to enroll 6 courses for who are interested to learn 
-more programing language 
+## My website has four menu, Home, Courses, FAQ and Blog. I have used Tailwind CSS framework for my project.I used react Router.For my project i used Tailwind CSS framework(MambaUI) .My website is responsive for all device, Mobile, Tablet, Pc and Laptop. I tried to do dark/light theme mode
 
 ## Implementation Technology
 
@@ -27,7 +26,13 @@ more programing language
 4. if user not login then he/se can not enrol the course 
 5. there is a logout btn user can logout clicking by logout btn
 
+## Features
 
+- Dark Mode / Light Mode
+- Toggle
+- Icon
+- UI
+- PDF Download
 
 ## Third Party Library 
 
