@@ -5,10 +5,12 @@ import logo from "../../../../assest/logo.png";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import { HiOutlineLogout} from "react-icons/hi";
 import toast from "react-hot-toast";
+import userLogo from "../../../../assest/PhotoNTA.png"
 
 
 export const Header = () => {
   const {user,logOut}= useContext(AuthContext)
+  console.log(user)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogout=()=>{
@@ -35,7 +37,7 @@ export const Header = () => {
           <li>
             <NavLink
               to="/courses"
-              aria-label="Our product"
+              aria-label="Courses"
               title="Our product"
               className={({ isActive }) =>
                 isActive
@@ -49,7 +51,7 @@ export const Header = () => {
           <li>
             <NavLink
               to="/blog"
-              aria-label="Our product"
+              aria-label="Blog"
               title="Our product"
               className={({ isActive }) =>
                 isActive
@@ -83,7 +85,20 @@ export const Header = () => {
 
          <div className="flex  items-center justify-center">
 	<div className="flex -space-x-4 me-3">
-		<img alt="" className="w-12 h-12 border rounded-full dark:bg-gray-500 dark:border-gray-700" src={user?.photoURL}/>
+		<>
+    {
+
+ user?.photoURL && <img title={user?.displayName? user.displayName: "Name N/A"}  alt="" className="w-12 h-12 border rounded-full dark:bg-gray-500 dark:border-gray-700" src={user?.photoURL}/>
+ 
+    }
+    {
+
+      !user?.photoURL && <img title={user?.displayName? user.displayName: "Name N/A"}  alt="" className="w-12 h-12 border rounded-full dark:bg-gray-500 dark:border-gray-700" src={userLogo}/>
+    }
+    
+    
+    
+    </>
 		
 		
 	</div>
