@@ -3,20 +3,19 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../../assest/logo.png";
 import { AuthContext } from "../../../../contexts/AuthProvider";
-import { HiOutlineLogout} from "react-icons/hi";
+import { HiOutlineLogout } from "react-icons/hi";
 import toast from "react-hot-toast";
-import userLogo from "../../../../assest/PhotoNTA.png"
-
+import userLogo from "../../../../assest/PhotoNTA.png";
 
 export const Header = () => {
-  const {user,logOut}= useContext(AuthContext)
-  console.log(user)
+  const { user, logOut } = useContext(AuthContext);
+  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleLogout=()=>{
-    logOut()
-    toast.error("You have been logged out")
-  }
+  const handleLogout = () => {
+    logOut();
+    toast.error("You have been logged out");
+  };
 
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -75,84 +74,55 @@ export const Header = () => {
           </label>
           <li>
             <>
-            
-            { user?.uid ? 
-            
-            <>
-         
-
-
-
-         <div className="flex  items-center justify-center">
-	<div className="flex -space-x-4 me-3">
-		<>
-    {
-
- user?.photoURL && <img title={user?.displayName? user.displayName: "Name N/A"}  alt="" className="w-12 h-12 border rounded-full dark:bg-gray-500 dark:border-gray-700" src={user?.photoURL}/>
- 
-    }
-    {
-
-      !user?.photoURL && <img title={user?.displayName? user.displayName: "Name N/A"}  alt="" className="w-12 h-12 border rounded-full dark:bg-gray-500 dark:border-gray-700" src={userLogo}/>
-    }
-    
-    
-    
-    </>
-		
-		
-	</div>
-  <div className="mx-3">
-
-<HiOutlineLogout onClick={handleLogout}></HiOutlineLogout>
-</div>
- 
-</div>
-
-
-
-            
-
-
-
-             
-             
-             
-             
-             
-             
-
-
-
-
-            
-            
-            </>
-             
-           : 
-           
-           <> <NavLink
-            to="/login"
-            aria-label="About us"
-            title="About us"
-            className={({ isActive }) =>
-              isActive
-                ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            }
-          >
-            Login
-          </NavLink>
-          
-          
-          </>
-             
-             
-             
-             
-             
-            }
-            
+              {user?.uid ? (
+                <>
+                  <div className="flex  items-center justify-center">
+                    <div className="flex -space-x-4 me-3">
+                      <>
+                        {user?.photoURL && (
+                          <img
+                            title={
+                              user?.displayName ? user.displayName : "Name N/A"
+                            }
+                            alt=""
+                            className="w-12 h-12 border rounded-full dark:bg-gray-500 dark:border-gray-700"
+                            src={user?.photoURL}
+                          />
+                        )}
+                        {!user?.photoURL && (
+                          <img
+                            title={
+                              user?.displayName ? user.displayName : "Name N/A"
+                            }
+                            alt=""
+                            className="w-12 h-12 border rounded-full dark:bg-gray-500 dark:border-gray-700"
+                            src={userLogo}
+                          />
+                        )}
+                      </>
+                    </div>
+                    <div className="mx-3">
+                      <HiOutlineLogout onClick={handleLogout}></HiOutlineLogout>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <NavLink
+                    to="/login"
+                    aria-label="About us"
+                    title="About us"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                    }
+                  >
+                    Login
+                  </NavLink>
+                </>
+              )}
             </>
           </li>
         </ul>

@@ -6,7 +6,7 @@ const Checkout = () => {
     return (
         <div className='w-full h-96 flex justify-center items-center'>
             
-            <h1 className='font-bold text-3xl text-green-800'>{title} successfully purchased!! thank you</h1>
+            <h1 className='font-bold text-3xl text-green-800'> {title} successfully Enrolled!!</h1>
         </div>
     );
 };
