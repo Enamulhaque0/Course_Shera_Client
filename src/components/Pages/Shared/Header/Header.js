@@ -26,7 +26,7 @@ export const Header = () => {
           title="Company"
           className="inline-flex items-center"
         >
-          <img className="w-25" src={logo} alt="" srcSet="" />
+          <img className="" src={logo} alt="" srcSet="" />
 
           <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
             Course Shera
@@ -70,7 +70,7 @@ export const Header = () => {
               <div className="w-10 h-6 rounded-full shadow-inner dark:bg-gray-400 peer-checked:dark:bg-violet-400"></div>
               <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto  dark:bg-gray-800"></div>
             </span>
-            <span className="text-black">Dark</span>
+            
           </label>
           <li>
             <>
@@ -153,17 +153,17 @@ export const Header = () => {
               <div className="p-5 bg-white border rounded shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <a
+                    <Link
                       href="/"
                       aria-label="Company"
                       title="Company"
                       className="inline-flex items-center"
                     >
-                      <img className="w-25" src={logo} alt="" srcSet="" />
+                      <img className="" src="" alt="" srcSet="" />
                       <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
                         Course Shera
                       </span>
-                    </a>
+                    </Link>
                   </div>
                   <div>
                     <button
@@ -224,22 +224,61 @@ export const Header = () => {
                         <div className="w-10 h-6 rounded-full shadow-inner dark:bg-gray-400 peer-checked:dark:bg-violet-400"></div>
                         <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto  dark:bg-gray-800"></div>
                       </span>
-                      <span className="text-black">Dark</span>
+                    
                     </label>
                     <li>
-                      <NavLink
-                        to="/login"
-                        aria-label="About us"
-                        title="About us"
-                        className={({ isActive }) =>
-                          isActive
-                            ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                            : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                        }
-                      >
-                        Login
-                      </NavLink>
-                    </li>
+            <>
+              {user?.uid ? (
+                <>
+                  <div className="flex  items-center justify-center">
+                    <div className="flex -space-x-4 me-3">
+                      <>
+                        {user?.photoURL && (
+                          <img
+                            title={
+                              user?.displayName ? user.displayName : "Name N/A"
+                            }
+                            alt=""
+                            className="w-12 h-12 border rounded-full dark:bg-gray-500 dark:border-gray-700"
+                            src={user?.photoURL}
+                          />
+                        )}
+                        {!user?.photoURL && (
+                          <img
+                            title={
+                              user?.displayName ? user.displayName : "Name N/A"
+                            }
+                            alt=""
+                            className="w-12 h-12 border rounded-full dark:bg-gray-500 dark:border-gray-700"
+                            src={userLogo}
+                          />
+                        )}
+                      </>
+                    </div>
+                    <div className="mx-3">
+                      <HiOutlineLogout onClick={handleLogout}></HiOutlineLogout>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <NavLink
+                    to="/login"
+                    aria-label="About us"
+                    title="About us"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                    }
+                  >
+                    Login
+                  </NavLink>
+                </>
+              )}
+            </>
+          </li>
                   </ul>
                 </nav>
               </div>
