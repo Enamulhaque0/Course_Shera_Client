@@ -8,6 +8,7 @@ import Course from "../../Pages/Courses/Course/Course";
 import Checkout from "../../Pages/Checkout/Checkout";
 import NotFound from "../../Pages/NotFound/NotFound";
 import Home from "../../Pages/Home/Home";
+import PrivateRoute from "../PrivetRoute/PrivetRoute";
 
 export const router = createBrowserRouter([
   {
@@ -48,7 +49,7 @@ export const router = createBrowserRouter([
       {
         path: "checkout/:id",
         loader: ({params})=> fetch(`https://y-enamulhaque0.vercel.app/checkout/${params.id}`),
-        element: <Checkout></Checkout>,
+        element: <PrivateRoute> <Checkout></Checkout></PrivateRoute>,
       }
     ],
   },

@@ -1,7 +1,7 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React from "react";
 import { useContext } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import toast from "react-hot-toast";
 import { useState } from "react";
@@ -9,8 +9,19 @@ import { useState } from "react";
 const Register = () => {
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
-  const { LoginWithGoogle, LoginWitGithub, createUser, updateUserProfile } =
-    useContext(AuthContext);
+  const { LoginWithGoogle, 
+    LoginWitGithub,
+     createUser,
+      updateUserProfile } 
+      =useContext(AuthContext);
+
+      const navigate = useNavigate();
+
+      // const location = useLocation();
+    
+      //   const from = location.state?.from?.pathname || '/';
+
+
   const [toggle, setToggle] = useState(false);
 
   const toggleHandle = () => {
@@ -21,6 +32,7 @@ const Register = () => {
     LoginWithGoogle(googleProvider)
       .then((result) => {
         const user = result.user;
+        navigate("/");
         toast.success("successfully Login");
       })
       .catch((error) => toast.error(error.message));
@@ -31,6 +43,7 @@ const Register = () => {
     LoginWitGithub(gitHubProvider)
       .then((result) => {
         const user = result.user;
+        navigate("/");
         toast.success("successfully Login");
       })
       .catch((error) => toast.error(error.message));
@@ -50,6 +63,7 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
+      
 
         form.reset();
         handleUpdateUserProfile(name, photoURL);
@@ -62,7 +76,9 @@ const Register = () => {
             color: "#fff",
           },
         });
+        navigate("/");
       })
+      
       .catch((e) => toast.error(e.message));
   };
 
@@ -82,7 +98,7 @@ const Register = () => {
     <div>
       <section className="bg-gray-50 min-h-screen flex items-center justify-center">
         <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
-          <div className="md:w-1/2 px-8 md:px-16">
+          <div className=" px-8 md:px-16">
             <h2 className="font-bold text-2xl text-[#002D74]">Register</h2>
 
             <form
@@ -192,13 +208,6 @@ const Register = () => {
                 </button>
               </Link>
             </div>
-          </div>
-
-          <div className="md:block hidden w-1/2">
-            <img
-              className="rounded-2xl"
-              src="https://images.unsplash.com/photo-1616606103915-dea7be788566?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
-            />
           </div>
         </div>
       </section>

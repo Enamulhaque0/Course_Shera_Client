@@ -1,6 +1,6 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import toast from "react-hot-toast";
 
@@ -8,9 +8,14 @@ const Login = () => {
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
 
-  const { LoginWithGoogle, LoginWitGithub, signIn } = useContext(AuthContext);
+  const { LoginWithGoogle, LoginWitGithub, signIn, setLoding } = useContext(AuthContext);
   const [toggle,setToggle]= useState(false)
   
+  const navigate = useNavigate();
+
+  const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
 
 
   const toggleHandle=()=>{
@@ -22,6 +27,7 @@ const Login = () => {
     LoginWithGoogle(googleProvider)
       .then((result) => {
         const user = result.user;
+        navigate(from, {replace: true});
         toast.success("successfully Login");
       })
       .catch((error) => toast.error(error.message));
@@ -35,6 +41,7 @@ const Login = () => {
     LoginWitGithub(gitHubProvider)
       .then((result) => {
         const user = result.user;
+        navigate(from, {replace: true});
         toast.success("successfully Login");
       })
       .catch((error) => toast.error(error.message));
@@ -54,7 +61,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         
-       
+        navigate(from, {replace: true});
         form.reset();
         toast.success('successfully login')
       
@@ -65,10 +72,7 @@ const Login = () => {
         
         toast.error(e.message);
     })
-    .finally(() => {
-        // setLoading(false);
-       
-    })
+   
 }
 
 
@@ -77,7 +81,7 @@ const Login = () => {
     <div>
       <section className="bg-gray-50 min-h-screen flex items-center justify-center">
         <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
-          <div className="md:w-1/2 px-8 md:px-16">
+          <div className=" px-8 md:px-16">
             <h2 className="font-bold text-2xl text-[#002D74]">Login</h2>
             <p className="text-xs mt-4 text-[#002D74]">
               If you are already a member, easily log in
@@ -178,12 +182,7 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="md:block hidden w-1/2">
-            <img
-              className="rounded-2xl"
-              src="https://images.unsplash.com/photo-1616606103915-dea7be788566?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
-            />
-          </div>
+         
         </div>
       </section>
     </div>
