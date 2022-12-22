@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import Loader from '../../../Loader/Loader';
 
 
 
@@ -11,11 +12,7 @@ const PrivateRoute = ({children}) => {
     const location = useLocation();
 
     if(loading){
-        return  <div className="flex items-center justify-center space-x-2">
-        <div className="w-4 h-4 rounded-full animate-pulse dark:bg-violet-400"></div>
-        <div className="w-4 h-4 rounded-full animate-pulse dark:bg-violet-400"></div>
-        <div className="w-4 h-4 rounded-full animate-pulse dark:bg-violet-400"></div>
-    </div>
+        return  <Loader></Loader>
     }
 
     if(!user){
